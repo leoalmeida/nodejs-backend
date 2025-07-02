@@ -13,8 +13,16 @@
   ],
   "tags": [
     {
-      "name": "articles",
-      "description": "Endpoints"
+      "name": "Article",
+      "description": "Article Endpoints"
+    },
+    {
+      "name": "User",
+      "description": "User Endpoints"
+    },
+    {
+      "name": "Resource",
+      "description": "Resource Endpoints"
     }
   ],
   "paths": {
@@ -86,7 +94,10 @@
         }
       },
       "put": {
-        "description": "",
+        "tags": [
+          "Article"
+        ],
+        "description": "Endpoint to update an article by ID.",
         "parameters": [
           {
             "name": "article_id",
@@ -94,12 +105,55 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Article ID."
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "Article successfully updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceId"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceId"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Article not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
           }
         },
         "requestBody": {
@@ -108,13 +162,16 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "title": {
+                  "in": {
                     "example": "any"
                   },
-                  "content": {
+                  "description": {
                     "example": "any"
                   },
-                  "author": {
+                  "required": {
+                    "example": "any"
+                  },
+                  "schema": {
                     "example": "any"
                   }
                 }
@@ -144,10 +201,51 @@
     },
     "/api/v1/resources/": {
       "get": {
-        "description": "",
+        "tags": [
+          "Resource"
+        ],
+        "description": "Endpoint to get a specific resource by ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Resource ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "Resource successfully obtained.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Resource"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Resource"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
           }
         }
       },
@@ -162,7 +260,10 @@
     },
     "/api/v1/resources/{id}": {
       "get": {
-        "description": "",
+        "tags": [
+          "Resource"
+        ],
+        "description": "Endpoint to update a resource by ID.",
         "parameters": [
           {
             "name": "id",
@@ -170,17 +271,72 @@
             "required": true,
             "schema": {
               "type": "string"
+            },
+            "description": "Resource ID."
+          },
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Resource information to update.",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ResourcePayload"
             }
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "Resource successfully updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceId"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceId"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
           }
         }
       },
       "put": {
-        "description": "",
+        "tags": [
+          "Resource"
+        ],
+        "description": "Endpoint to update a resource by ID.",
         "parameters": [
           {
             "name": "id",
@@ -188,17 +344,72 @@
             "required": true,
             "schema": {
               "type": "string"
+            },
+            "description": "Resource ID."
+          },
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Resource information to update.",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ResourcePayload"
             }
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "Resource successfully updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceId"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceId"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
           }
         }
       },
       "delete": {
-        "description": "",
+        "tags": [
+          "Resource"
+        ],
+        "description": "Endpoint to delete a resource by ID.",
         "parameters": [
           {
             "name": "id",
@@ -206,12 +417,40 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Resource ID."
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "Resource successfully deleted.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceId"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceId"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
           }
         }
       }
@@ -276,10 +515,51 @@
     },
     "/api/v1/users/": {
       "get": {
-        "description": "",
+        "tags": [
+          "User"
+        ],
+        "description": "Endpoint to get a specific user by ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "User ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "User successfully obtained.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
           }
         }
       },
@@ -294,7 +574,10 @@
     },
     "/api/v1/users/{id}": {
       "get": {
-        "description": "",
+        "tags": [
+          "User"
+        ],
+        "description": "Endpoint to update a user by ID.",
         "parameters": [
           {
             "name": "id",
@@ -302,17 +585,72 @@
             "required": true,
             "schema": {
               "type": "string"
+            },
+            "description": "User ID."
+          },
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "User information to update.",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UserPayload"
             }
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "User successfully updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceId"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceId"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
           }
         }
       },
       "put": {
-        "description": "",
+        "tags": [
+          "User"
+        ],
+        "description": "Endpoint to update a user by ID.",
         "parameters": [
           {
             "name": "id",
@@ -320,17 +658,72 @@
             "required": true,
             "schema": {
               "type": "string"
+            },
+            "description": "User ID."
+          },
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "User information to update.",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UserPayload"
             }
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "User successfully updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceId"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceId"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
           }
         }
       },
       "delete": {
-        "description": "",
+        "tags": [
+          "User"
+        ],
+        "description": "Endpoint to delete a user by ID.",
         "parameters": [
           {
             "name": "id",
@@ -338,13 +731,834 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "User ID."
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "User successfully deleted.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceId"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceId"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
           }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Article": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "object"
+          },
+          "properties": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "The article ID."
+                  },
+                  "example": {
+                    "type": "string",
+                    "example": "60d5ec49f1d2f2001c8b4567"
+                  }
+                }
+              },
+              "title": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "The title of the article."
+                  },
+                  "example": {
+                    "type": "string",
+                    "example": "My Awesome Article"
+                  }
+                }
+              },
+              "content": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "The content of the article."
+                  },
+                  "example": {
+                    "type": "string",
+                    "example": "This is the content of the awesome article."
+                  }
+                }
+              },
+              "author": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "The author of the article."
+                  },
+                  "example": {
+                    "type": "string",
+                    "example": "John Doe"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "xml": {
+          "name": "Article"
+        }
+      },
+      "ArticlePayload": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "object"
+          },
+          "required": {
+            "type": "array",
+            "example": [
+              "title",
+              "content",
+              "author"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "properties": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "The title of the article."
+                  },
+                  "example": {
+                    "type": "string",
+                    "example": "My New Article"
+                  }
+                }
+              },
+              "content": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "The content of the article."
+                  },
+                  "example": {
+                    "type": "string",
+                    "example": "This is the content."
+                  }
+                }
+              },
+              "author": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "The author of the article."
+                  },
+                  "example": {
+                    "type": "string",
+                    "example": "John Doe"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "xml": {
+          "name": "ArticlePayload"
+        }
+      },
+      "ResourceId": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "object"
+          },
+          "properties": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "The resource ID."
+                  },
+                  "example": {
+                    "type": "string",
+                    "example": "60d5ec49f1d2f2001c8b4567"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "xml": {
+          "name": "ResourceId"
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "object"
+          },
+          "properties": {
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "integer"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "The HTTP status code."
+                  },
+                  "example": {
+                    "type": "number",
+                    "example": 400
+                  }
+                }
+              },
+              "message": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "A human-readable error message."
+                  },
+                  "example": {
+                    "type": "string",
+                    "example": "Bad Request"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "xml": {
+          "name": "ErrorResponse"
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "object"
+          },
+          "properties": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "The user ID."
+                  },
+                  "example": {
+                    "type": "string",
+                    "example": "60d5ec49f1d2f2001c8b4568"
+                  }
+                }
+              },
+              "name": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "The name of the user."
+                  },
+                  "example": {
+                    "type": "string",
+                    "example": "Jane Doe"
+                  }
+                }
+              },
+              "birthDate": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "The birth date of the user."
+                  },
+                  "example": {
+                    "type": "string",
+                    "example": "1990-05-15"
+                  }
+                }
+              },
+              "phone": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "The phone number of the user."
+                  },
+                  "example": {
+                    "type": "string",
+                    "example": "+1-555-123-4567"
+                  }
+                }
+              },
+              "email": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "format": {
+                    "type": "string",
+                    "example": "email"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "The email address of the user."
+                  },
+                  "example": {
+                    "type": "string",
+                    "example": "jane.doe@example.com"
+                  }
+                }
+              },
+              "occupation": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "The occupation of the user."
+                  },
+                  "example": {
+                    "type": "string",
+                    "example": "Software Engineer"
+                  }
+                }
+              },
+              "state": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "The state of residence."
+                  },
+                  "example": {
+                    "type": "string",
+                    "example": "CA"
+                  }
+                }
+              },
+              "createdBy": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "The user who created this record."
+                  },
+                  "example": {
+                    "type": "string",
+                    "example": "system"
+                  }
+                }
+              },
+              "createdAt": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "format": {
+                    "type": "string",
+                    "example": "date-time"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "The creation timestamp."
+                  },
+                  "example": {
+                    "type": "string",
+                    "example": "2023-01-01T12:00:00Z"
+                  }
+                }
+              },
+              "lastModifiedBy": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "The user who last modified this record."
+                  },
+                  "example": {
+                    "type": "string",
+                    "example": "admin"
+                  }
+                }
+              },
+              "lastModifiedAt": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "format": {
+                    "type": "string",
+                    "example": "date-time"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "The last modification timestamp."
+                  },
+                  "example": {
+                    "type": "string",
+                    "example": "2023-01-02T15:30:00Z"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "xml": {
+          "name": "User"
+        }
+      },
+      "UserPayload": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "object"
+          },
+          "required": {
+            "type": "array",
+            "example": [
+              "name",
+              "createdBy",
+              "createdAt"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "properties": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "The name of the user."
+                  },
+                  "example": {
+                    "type": "string",
+                    "example": "John Smith"
+                  }
+                }
+              },
+              "birthDate": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "The birth date of the user."
+                  },
+                  "example": {
+                    "type": "string",
+                    "example": "1985-08-20"
+                  }
+                }
+              },
+              "phone": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "The phone number of the user."
+                  },
+                  "example": {
+                    "type": "string",
+                    "example": "+44-20-7946-0958"
+                  }
+                }
+              },
+              "email": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "format": {
+                    "type": "string",
+                    "example": "email"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "The email address of the user."
+                  },
+                  "example": {
+                    "type": "string",
+                    "example": "john.smith@example.co.uk"
+                  }
+                }
+              },
+              "occupation": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "The occupation of the user."
+                  },
+                  "example": {
+                    "type": "string",
+                    "example": "Project Manager"
+                  }
+                }
+              },
+              "state": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "The state of residence."
+                  },
+                  "example": {
+                    "type": "string",
+                    "example": "NY"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "xml": {
+          "name": "UserPayload"
+        }
+      },
+      "Resource": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "object"
+          },
+          "properties": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "The resource ID."
+                  },
+                  "example": {
+                    "type": "string",
+                    "example": "60d5ec49f1d2f2001c8b4569"
+                  }
+                }
+              },
+              "name": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "The name of the resource."
+                  },
+                  "example": {
+                    "type": "string",
+                    "example": "Server A"
+                  }
+                }
+              },
+              "type": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "The type of the resource."
+                  },
+                  "example": {
+                    "type": "string",
+                    "example": "Virtual Machine"
+                  }
+                }
+              },
+              "location": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "The location of the resource."
+                  },
+                  "example": {
+                    "type": "string",
+                    "example": "us-central1-a"
+                  }
+                }
+              },
+              "status": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "The status of the resource."
+                  },
+                  "example": {
+                    "type": "string",
+                    "example": "active"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "xml": {
+          "name": "Resource"
+        }
+      },
+      "ResourcePayload": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "object"
+          },
+          "required": {
+            "type": "array",
+            "example": [
+              "name",
+              "type",
+              "status",
+              "createdBy",
+              "createdAt"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "properties": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  }
+                }
+              },
+              "type": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  }
+                }
+              },
+              "location": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  }
+                }
+              },
+              "status": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  }
+                }
+              },
+              "createdBy": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  }
+                }
+              },
+              "createdAt": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "format": {
+                    "type": "string",
+                    "example": "date-time"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "xml": {
+          "name": "ResourcePayload"
         }
       }
     }

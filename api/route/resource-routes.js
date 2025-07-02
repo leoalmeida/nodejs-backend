@@ -16,16 +16,16 @@
 
 import { Router } from 'express';
 const router = Router({mergeParams: true});
-import { listarItems, getOneItem, saveItem, removeItem, updateItem } from '../controllers/resource-controller.js';
+import { createResource, getAllResources, getResourceById, updateResourceById, deleteResourceById } from '../controllers/resource-controller.js';
 
 // Rotas para operações CRUD de recursos
 router.route("/")
-    .get(listarItems)
-    .post(saveItem);
+    .get(getAllResources)
+    .post(createResource);
 
 router.route('/:id')
-    .delete(removeItem)
-    .put(updateItem)
-    .get(getOneItem);
+    .delete(deleteResourceById)
+    .put(updateResourceById)
+    .get(getResourceById);
 
 export default router;

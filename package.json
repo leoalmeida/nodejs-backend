@@ -11,7 +11,7 @@
     "test:unit": "NODE_ENV=test && jest --runInBand --watch ./__tests__ && npm run test:cleanup",
     "test:e2e": "NODE_ENV=test && jest",
     "test:cleanup": "node ./__tests__/testdb-cleanup.js",
-    "test:integration": "NODE_ENV=test jest --runInBand tests/integration"
+    "test:integration": "NODE_ENV=test jest --runInBand tests/integration",
     "lint": "eslint api",
     "dev": "nodemon index.js",
     "start": "node index.js",

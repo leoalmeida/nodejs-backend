@@ -14,19 +14,19 @@
 
 import { Router } from 'express';
 const router = Router({mergeParams: true});
-import { listarItems, saveItem, removeItem, updateItem, getOneItem } from '../controllers/user-controller.js';
+import { createUser, getAllUsers, getUserById, updateUserById, deleteUserById } from '../controllers/user-controller.js';
 
 // Rotas para operações CRUD de recursos
 
 // User api route.
 router.route("/")
-    .get(listarItems)
-    .post(saveItem);
+    .get(getAllUsers)
+    .post(createUser);
 
 router.route('/:id')
-    .delete(removeItem)
-    .put(updateItem)
-    .get(getOneItem);
+    .delete(deleteUserById)
+    .put(updateUserById)
+    .get(getUserById);
 
 
 export default router;

@@ -56,3 +56,4 @@ export const deleteResourceById = catchAsync(async (req, res) => {
     const result = await service.deleteResourceById(id);
     return formatResponse(res, 200, { id: result._id });
 });
+
