@@ -1,0 +1,70 @@
+{
+    "resources": {
+      "data": [
+        {
+            "id": "10000",
+            "name": "hub7943981185795460",
+            "type": "accounts",
+            "location": "eastus",
+            "properties": {},
+            "status": "running",
+            "systemData": {
+                "createdBy": "5da9ea674234635bdff45c02",
+                "createdByType": "User",
+                "createdAt": "2025-04-28T15:12:56.0906926Z",
+                "lastModifiedBy": "5da9ea674234635bdff45c02",
+                "lastModifiedByType": "User",
+                "lastModifiedAt": "2025-04-28T15:12:56.0906926Z"
+            }
+        },
+        {
+            "id": "20000",
+            "name": "projai795460",
+            "type": "project",
+            "location": "eastus",
+            "properties": {},
+            "status": "running",
+            "systemData": {
+                "createdBy": "5da9ea674234635bdff45c02",
+                "createdByType": "User",
+                "createdAt": "2025-04-28T15:12:56.0906926Z",
+                "lastModifiedBy": "5da9ea674234635bdff45c02",
+                "lastModifiedByType": "User",
+                "lastModifiedAt": "2025-04-28T15:12:56.0906926Z"
+            }
+        },
+        {
+            "id": "30000",
+            "name": "space794398",
+            "type": "hub",
+            "location": "eastus",
+            "properties": {},
+            "status": "stopped",
+            "systemData": {
+                "createdBy": "5da9ea674234635bdff45c02",
+                "createdByType": "User",
+                "createdAt": "2025-04-28T15:12:56.0906926Z",
+                "lastModifiedBy": "5da9ea674234635bdff45c02",
+                "lastModifiedByType": "User",
+                "lastModifiedAt": "2025-04-28T15:12:56.0906926Z"
+            }
+        },
+        {
+            "id": "40000",
+            "name": "st981185795460",
+            "type": "storage",
+            "location": "eastus",
+            "properties": {},
+            "status": "stopped",
+            "systemData": {
+                "createdBy": "5da9ea674234635bdff45c02",
+                "createdByType": "User",
+                "createdAt": "2025-04-28T15:12:56.0906926Z",
+                "lastModifiedBy": "5da9ea674234635bdff45c02",
+                "lastModifiedByType": "User",
+                "lastModifiedAt": "2025-04-28T15:12:56.0906926Z"
+            }
+        }
+      ]
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "server": {
+        "port" : 8080,
+        "db" : {
+            "url": "mongodb://localhost:27017/backend",
+            "username": "api-nodejs",
+            "password": "",
+            "hostname": "localhost",
+            "db": "backend"
+        }
+    }
+}
